@@ -9,6 +9,10 @@ interface ElementsContext {
     downloadButton: HTMLButtonElement;
     uploadButton: HTMLButtonElement;
     fileInput: HTMLInputElement;
+    outputImage: HTMLInputElement;
+    modalContainer: HTMLElement;
+    modalCloseButton: HTMLButtonElement;
+    modalProgressBar: HTMLProgressElement;
 }
 
 export type NullableElementsContext = WithNullable<ElementsContext>;

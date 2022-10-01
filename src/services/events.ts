@@ -1,5 +1,4 @@
 import { fabric } from 'fabric';
-import download from 'downloadjs';
 
 import ElementsContext from '../interfaces/Context';
 import Dimensions from '../interfaces/Dimensions';
@@ -90,8 +89,11 @@ export default function (elements: ElementsContext) {
         context.input = input;
     }
 
-    function save() {
+    async function save() {
         checkContext();
+
+        elements.modalProgressBar.style.display = 'block';
+        elements.modalContainer.classList.add('is-active');
 
         let data: string;
 
@@ -117,11 +119,23 @@ export default function (elements: ElementsContext) {
             data = getData();
         }
 
-        download(data, constants.downloadFilename, constants.downloadMimeType);
+        const imageLoadingPromise = new Promise((resolve, reject) => {
+            elements.outputImage.onload = resolve;
+            elements.outputImage.onerror = reject;
+        });
+
+        elements.outputImage.src = data;
+
+        await imageLoadingPromise;
+
+        elements.modalProgressBar.style.display = 'none';
 
         function getData() {
+            const multiplier = context.originalDimensions!.width / context.lastSize!.dimensions.width;
+
             return context.canvas!.toDataURL({
-                format: constants.downloadMimeType
+                format: constants.downloadMimeType,
+                multiplier
             });
         }
     }

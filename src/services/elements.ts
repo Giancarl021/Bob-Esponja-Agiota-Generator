@@ -9,7 +9,11 @@ const context: NullableElementsContext = {
     container: null,
     downloadButton: null,
     uploadButton: null,
-    fileInput: null
+    fileInput: null,
+    outputImage: null,
+    modalContainer: null,
+    modalCloseButton: null,
+    modalProgressBar: null
 };
 
 export default function () {
@@ -22,6 +26,10 @@ export default function () {
         context.downloadButton = document.querySelector('#download-button') as HTMLButtonElement;
         context.uploadButton = document.querySelector('#upload-button') as HTMLButtonElement;
         context.fileInput = document.querySelector('#file-input') as HTMLInputElement;
+        context.outputImage = document.querySelector('#output-image') as HTMLInputElement;
+        context.modalContainer = document.querySelector('.modal') as HTMLElement;
+        context.modalCloseButton = context.modalContainer.querySelector('button') as HTMLButtonElement;
+        context.modalProgressBar = context.modalContainer.querySelector('progress') as HTMLProgressElement;
     }
 
     return context as ElementsContext;

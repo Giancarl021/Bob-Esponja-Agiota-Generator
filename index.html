@@ -11,18 +11,30 @@
     <header>
       <h1 class="title">Bob Esponja Agiota Generator</h1>
       <div>
-        <button id="download-button" class="button is-link">Baixar imagem</button>
-      <button id="upload-button" class="button is-success">Carregar imagem</button>
+        <button id="download-button" class="button is-link">
+          Baixar imagem
+        </button>
+        <button id="upload-button" class="button is-success">
+          Carregar imagem
+        </button>
       </div>
     </header>
     <main>
       <canvas id="editor"></canvas>
-      <img id="hand-image" src="/hand.png" alt="Base Image">
+      <img id="hand-image" src="/hand.png" alt="Base Image" />
     </main>
     <div class="--hidden">
-      <img id="base-image" src="/base.png" alt="Base Image">
-      <img id="input-image" alt="Uploaded Image">
-      <input type="file" name="file-input" id="file-input">
+      <img id="base-image" src="/base.png" alt="Base Image" />
+      <img id="input-image" alt="Uploaded Image" />
+      <input type="file" name="file-input" id="file-input" />
+    </div>
+    <div class="modal">
+      <div class="modal-background"></div>
+      <div class="modal-content">
+        <progress class="progress is-large is-info" max="100">Carregando...</progress>
+        <img id="output-image" alt="Final Image">
+      </div>
+      <button class="modal-close is-large" aria-label="close"></button>
     </div>
   </body>
 </html>

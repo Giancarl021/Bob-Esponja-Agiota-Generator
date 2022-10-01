@@ -19,6 +19,7 @@ async function main() {
 
     elements.uploadButton.onclick = () => elements.fileInput.click();
     elements.fileInput.onchange = input.onInput.bind(elements.fileInput);
+    elements.modalCloseButton.onclick = () => elements.modalContainer.classList.remove('is-active');
     document.onpaste = input.onPaste;
     document.ondrop = input.onDrop;
 
