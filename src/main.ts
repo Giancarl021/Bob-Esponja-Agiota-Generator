@@ -12,7 +12,7 @@ async function main() {
     const events = Events(elements);
     const input = Input(Loader(elements, events));
 
-    events.bootstrap();
+    await events.bootstrap();
 
     window.onresize = events.resize;
     elements.downloadButton.onclick = events.save;

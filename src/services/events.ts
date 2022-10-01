@@ -24,7 +24,9 @@ export default function (elements: ElementsContext) {
         lastSize: null
     };
 
-    function bootstrap() {    
+    async function bootstrap() {
+        await imageLoad();
+
         const canvas = new fabric.Canvas(elements.canvas);
     
         const base = new fabric.Image(elements.baseImage, {
@@ -167,6 +169,22 @@ export default function (elements: ElementsContext) {
         }
 
         return 1;
+    }
+
+    async function imageLoad() {
+        const baseImagePromise = new Promise((resolve, reject) => {
+            if (elements.baseImage.complete) return resolve(null);
+            elements.baseImage.onload = resolve;
+            elements.baseImage.onerror = reject;
+        });
+
+        const handImagePromise = new Promise((resolve, reject) => {
+            if (elements.handImage.complete) return resolve(null);
+            elements.handImage.onload = resolve;
+            elements.handImage.onerror = reject;
+        });
+
+        await Promise.all([baseImagePromise, handImagePromise]);
     }
 
     return {
