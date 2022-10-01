@@ -1,0 +1,45 @@
+html,
+body {
+    overflow: hidden;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+
+    > * {
+        width: 100%;
+    }
+
+    header {
+        padding: 20px;
+        box-shadow: 0 0 15px #0003;
+        display: flex;
+        justify-content: space-between;
+
+        h1 {
+            margin: 0 !important;
+        }
+    }
+
+    main {
+        padding: 20px;
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        img {
+            position: absolute;
+            display: none;
+            pointer-events: none;
+            z-index: 1;
+        }
+    }
+}
+
+.--hidden {
+    display: none;
+}
