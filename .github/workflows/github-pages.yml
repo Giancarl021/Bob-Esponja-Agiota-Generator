@@ -4,6 +4,7 @@
 name: GitHub Pages
 permissions:
   id-token: write
+  pages: write
 on:
   push:
     branches: [ "master" ]
