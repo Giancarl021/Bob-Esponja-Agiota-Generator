@@ -33,8 +33,8 @@ jobs:
     - run: |
         tar \
           --dereference --hard-dereference \
-          --directory "dist" \
-          -cvf "$RUNNER_TEMP/build.tar" \
+          --directory dist \
+          -cvf build.tar \
           --exclude=.git \
           --exclude=.github \
           .
@@ -43,7 +43,7 @@ jobs:
       uses: actions/upload-artifact@v3.1.0
       with:
         name: github-pages-artifact
-        path: "$RUNNER_TEMP/build.tar"
+        path: build.tar
         if-no-files-found: error
       
 
