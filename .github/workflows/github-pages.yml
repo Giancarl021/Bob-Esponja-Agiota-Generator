@@ -30,18 +30,20 @@ jobs:
     - run: npm install --global yarn@latest
     - run: yarn --frozen-lockfile
     - run: yarn build
-    
-    - name: Compress assets
-      uses: a7ul/tar-action@v1.1.0
-      with:
-        files: dist
-        outPath: build
-    
+    - run: |
+        tar \
+          --dereference --hard-dereference \
+          --directory "dist" \
+          -cvf "$RUNNER_TEMP/build.tar" \
+          --exclude=.git \
+          --exclude=.github \
+          .
+
     - name: Upload a Build Artifact
       uses: actions/upload-artifact@v3.1.0
       with:
         name: github-pages-artifact
-        path: build
+        path: "$RUNNER_TEMP/build.tar"
         if-no-files-found: error
       
 
